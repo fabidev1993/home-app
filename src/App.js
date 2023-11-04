@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React, { lazy, Suspense } from 'react'; // Must be imported for webpack to work
 import './App.css';
 
+const Header = lazy(() => import('HeaderApp/Header'));
+const Fereshteh = lazy(() => import('HeaderApp/Fereshteh'));
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Suspense fallback={<div>Loading Header...</div>}>
+                <Header />
+            </Suspense>
+            <div className="container">Demo home page</div>
+            <Suspense fallback={<div>Loading Header...</div>}>
+                <Fereshteh />
+            </Suspense>
+        </div>
+    );
 }
 
 export default App;
